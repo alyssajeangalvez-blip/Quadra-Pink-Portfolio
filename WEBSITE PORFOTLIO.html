@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cherry Blossom Group Portfolio</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #633c50;
+    background: #fff5fa;
+}
+
+header {
+    background: rgba(255,240,248,.95);
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #f4cadd;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 23px;
+    color: #b64f7d;
+    font-weight: bold;
+}
+
+nav a {
+    color: #81445f;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #d34e8a;
+}
+
+.hero {
+    min-height: 260px;
+    padding: 70px 20px;
+    text-align: center;
+    color: #fff;
+    background:
+        linear-gradient(#6e3c5570,#6e3c5570),
+        url('https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1600&q=80')
+        center/cover;
+}
+
+.hero h1 {
+    font: bold clamp(30px,5vw,48px) Georgia,serif;
+    margin: 0 0 12px;
+}
+
+.hero p {
+    font-size: 17px;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font: bold 30px Georgia,serif;
+    color: #b64f7d;
+    margin: 10px 0 28px;
+}
+
+.members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+    gap: 22px;
+}
+
+.member-card {
+    background: linear-gradient(
+        155deg,
+        #ffffff 55%,
+        var(--member-tint,#fff4f8)
+    );
+    border: 1px solid var(--member-border,#f1c8da);
+    border-radius: 18px;
+    padding: 24px 18px;
+    text-align: center;
+    box-shadow: 0 7px 20px #9e50731c;
+    transition: transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--member-accent,#f8c9dd);
+    background: var(--member-tint,#ffeaf3);
+    transition: transform .45s ease,border-color .3s ease,box-shadow .3s ease;
+}
+
+.member-card h3 {
+    margin: 14px 0 6px;
+    color: #9c456d;
+    transition: color .25s ease;
+}
+
+.member-card p {
+    margin: 0 0 17px;
+    color: #8a6b79;
+}
+
+.btn {
+    display: inline-block;
+    background: #c95e8d;
+    color: white;
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #a94170;
+}
+
+.profile {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 58px 18px 28px;
+    background: rgba(0,0,0,.78);
+    overflow-y: auto;
+}
+
+.profile:target {
+    display: block;
+    scroll-margin-top: 0;
+}
+
+.resume-sheet {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    max-width: 900px;
+    min-height: 650px;
+    margin: 0 auto;
+    background: #fff;
+    color: #35372f;
+    box-shadow: 0 15px 45px #0005;
+    position: relative;
+}
+
+.resume-sidebar {
+    background: linear-gradient(
+        155deg,
+        var(--resume-color-start,#f4b8d0) 0%,
+        var(--resume-color-mid,#f8d7e5) 55%,
+        var(--resume-color-end,#d985ad) 100%
+    );
+    color: #fff;
+    padding: 28px 22px;
+}
+
+.resume-sidebar .profile-photo {
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f4f1e8;
+    display: block;
+    margin: 0 auto 24px;
+}
+
+.resume-sidebar h3 {
+    font: bold 12px Arial,sans-serif;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #fff;
+    border-bottom: 1px solid #ffffff70;
+    padding-bottom: 8px;
+    margin: 24px 0 10px;
+}
+
+.resume-sidebar p {
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.resume-main {
+    padding: 42px 38px;
+}
+
+.resume-main .resume-tag {
+    display: inline-block;
+    background: var(--resume-accent,#87977a);
+    color: #fff;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .7px;
+}
+
+.profile h2 {
+    font: normal 34px Georgia,serif;
+    color: #383a32;
+    line-height: 1.05;
+    margin: 15px 0 7px;
+    text-transform: uppercase;
+}
+
+.resume-main .subtitle {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 25px;
+    color: #9d6684;
+}
+
+.resume-main h3 {
+    font: bold 14px Arial,sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--resume-text,#806a91);
+    border-bottom: 1px solid var(--resume-line,#d9ddcf);
+    padding-bottom: 8px;
+    margin: 24px 0 10px;
+}
+
+.profile p {
+    line-height: 1.65;
+}
+
+.resume-main p,
+.resume-main li {
+    font-size: 13px;
+}
+
+.resume-main ul {
+    padding-left: 18px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.info-box {
+    background: #f5f1f8;
+    border-radius: 4px;
+    padding: 12px 14px;
+}
+
+.info-box h3 {
+    border: 0;
+    padding: 0;
+    margin: 0 0 8px;
+    color: #806a91;
+}
+
+.certificates {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+}
+
+.certificate {
+    border: 1px solid #e8d9e9;
+    background: #fffaf5;
+    padding: 8px;
+    text-align: center;
+}
+
+.certificate img {
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+    background: #fff;
+}
+
+.certificate p {
+    margin: 7px 0 0;
+    font-size: 12px;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 20px;
+    color: #806a91;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.close-profile {
+    position: fixed;
+    top: 18px;
+    right: calc((100% - min(900px, 100% - 36px))/2);
+    z-index: 1002;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--resume-accent,#87977a);
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px #0004;
+}
+
+.resume-main .back {
+    background: var(--resume-accent,#87977a);
+    color: white;
+    padding: 9px 14px;
+    border-radius: 3px;
+}
+
+/* Welcome section */
+
+.welcome-panel {
+    text-align: center;
+    padding: 35px 20px 45px;
+    margin: 28px auto 20px;
+    max-width: 760px;
+    background: linear-gradient(135deg,#fffafd,#ffe6f1);
+    border: 1px solid #f4cadd;
+    border-radius: 24px;
+    box-shadow: 0 10px 28px #b64f7d18;
+    animation: softRise .9s ease both;
+}
+
+.welcome-flower {
+    font-size: 42px;
+    animation: floatFlower 3s ease-in-out infinite;
+}
+
+.welcome-panel h2 {
+    font: bold clamp(26px,4vw,38px) Georgia,serif;
+    color: #b64f7d;
+    margin: 12px 0;
+}
+
+.welcome-panel p {
+    color: #8a6b79;
+    line-height: 1.7;
+    margin: 0 0 22px;
+}
+
+.explore-btn {
+    box-shadow: 0 6px 16px #c95e8d35;
+    transition: transform .25s,box-shadow .25s;
+}
+
+.explore-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px #c95e8d45;
+}
+
+.members-reveal {
+    margin: 25px auto;
+    max-width: 1100px;
+}
+
+.members-reveal summary {
+    list-style: none;
+    cursor: pointer;
+    text-align: center;
+    background: #ffe6f1;
+    color: #806a91;
+    border: 1px solid #f1bfd4;
+    border-radius: 16px;
+    padding: 18px 22px;
+    font-weight: bold;
+    font-family: Georgia,serif;
+    font-size: 22px;
+    box-shadow: 0 6px 18px #b64f7d12;
+    transition: background .25s,transform .25s;
+}
+
+.members-reveal summary::-webkit-details-marker {
+    display: none;
+}
+
+.members-reveal summary:hover {
+    background: #ffd7e8;
+    transform: translateY(-2px);
+}
+
+.members-reveal summary span {
+    display: block;
+    font: normal 12px Arial,sans-serif;
+    color: #9e6d83;
+    margin-top: 6px;
+}
+
+.members-reveal[open] summary {
+    margin-bottom: 24px;
+}
+
+.members-reveal[open] .members {
+    animation: softRise .6s ease both;
+}
+
+.profile:target .resume-sheet {
+    animation: resumeAppear .45s ease both;
+}
+
+/* Member card colors and animations */
+
+.member-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 -120%;
+    width: 70%;
+    background: linear-gradient(110deg,transparent,#ffffffa8,transparent);
+    transform: skewX(-18deg);
+    transition: left .7s ease;
+    pointer-events: none;
+}
+
+.member-card:nth-child(1) {
+    --member-tint: #fff0f6;
+    --member-border: #f2bfd5;
+    --member-accent: #f0b2ce;
+    --member-text: #b85e85;
+}
+
+.member-card:nth-child(2) {
+    --member-tint: #eff7ff;
+    --member-border: #bddcf5;
+    --member-accent: #a9d1f2;
+    --member-text: #4d83b5;
+}
+
+.member-card:nth-child(3) {
+    --member-tint: #effaf1;
+    --member-border: #c1e5c7;
+    --member-accent: #a9d9b2;
+    --member-text: #4e8b60;
+}
+
+.member-card:nth-child(4) {
+    --member-tint: #f5f0ff;
+    --member-border: #d8c8f3;
+    --member-accent: #c5b0eb;
+    --member-text: #8064ad;
+}
+
+.member-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 18px 34px #9e50732b;
+    border-color: var(--member-accent,#d8b7df);
+}
+
+.member-card:hover::before {
+    left: 150%;
+}
+
+.member-card:hover img {
+    transform: scale(1.06) rotate(-2deg);
+    border-color: var(--member-accent,#cbb9e6);
+    box-shadow: 0 0 0 6px var(--member-tint,#e8dff3);
+}
+
+.member-card:hover h3 {
+    color: var(--member-text,#806a91);
+}
+
+.members-reveal[open] .member-card {
+    animation: memberFloatIn .65s cubic-bezier(.2,.75,.25,1) both;
+}
+
+.members-reveal[open] .member-card:nth-child(1) {
+    animation-delay: .05s;
+}
+
+.members-reveal[open] .member-card:nth-child(2) {
+    animation-delay: .14s;
+}
+
+.members-reveal[open] .member-card:nth-child(3) {
+    animation-delay: .23s;
+}
+
+.members-reveal[open] .member-card:nth-child(4) {
+    animation-delay: .32s;
+}
+
+/* Default resume color */
+
+.resume-sheet {
+    overflow: hidden;
+    border-radius: 5px;
+    --resume-color-start: #f4b8d0;
+    --resume-color-mid: #f8d7e5;
+    --resume-color-end: #d985ad;
+    --resume-accent: #c45d87;
+    --resume-soft: #fff0f6;
+    --resume-line: #f0b2ce;
+    --resume-text: #a94f79;
+}
+
+/* Member 1 - Pastel Pink */
+
+.profile#angel .resume-sheet {
+    --resume-color-start: #e99bbd;
+    --resume-color-mid: #f5c8db;
+    --resume-color-end: #c96f98;
+    --resume-accent: #c45d87;
+    --resume-soft: #fff0f6;
+    --resume-line: #f0b2ce;
+    --resume-text: #a94f79;
+}
+
+/* Member 2 - Pastel Blue */
+
+.profile#alyssa .resume-sheet {
+    --resume-color-start: #86b9e8;
+    --resume-color-mid: #c5e2fa;
+    --resume-color-end: #6599ce;
+    --resume-accent: #4d83b5;
+    --resume-soft: #eff7ff;
+    --resume-line: #a9d1f2;
+    --resume-text: #3f719f;
+}
+
+/* Member 3 - Dark Blue ONLY */
+
+.profile#dyanna .resume-sheet {
+    --resume-color-start: #12336b;
+    --resume-color-mid: #1e4d91;
+    --resume-color-end: #081d43;
+    --resume-accent: #173f7a;
+    --resume-soft: #edf3fc;
+    --resume-line: #9db9e4;
+    --resume-text: #173f7a;
+}
+
+/* Member 4 - Pastel Purple */
+
+.profile#janelle .resume-sheet {
+    --resume-color-start: #b9a2e7;
+    --resume-color-mid: #e0d3f7;
+    --resume-color-end: #9a80d0;
+    --resume-accent: #8064ad;
+    --resume-soft: #f5f0ff;
+    --resume-line: #c5b0eb;
+    --resume-text: #71559e;
+}
+
+.resume-main {
+    background: linear-gradient(
+        160deg,
+        #fff 0%,
+        #fff 72%,
+        var(--resume-soft,#fffaf5) 100%
+    );
+}
+
+.resume-sidebar h3 {
+    border-bottom-color: #ffffff80;
+}
+
+.resume-sidebar {
+    position: relative;
+}
+
+.resume-sidebar::after {
+    content: "✿  ✧  ❀";
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    color: #ffffff70;
+    font-size: 21px;
+    letter-spacing: 8px;
+    pointer-events: none;
+    animation: floatFlower 4s ease-in-out infinite;
+}
+
+.resume-sidebar .profile-photo {
+    transition: transform .45s ease,box-shadow .45s ease;
+}
+
+.resume-sidebar .profile-photo:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 7px #ffffff35;
+}
+
+.resume-main h3 {
+    position: relative;
+}
+
+.resume-main h3::after {
+    content: "";
+    display: block;
+    width: 42px;
+    height: 3px;
+    margin-top: 7px;
+    border-radius: 4px;
+    background: linear-gradient(
+        90deg,
+        var(--resume-accent,#dca2bd),
+        var(--resume-line,#a8b79a)
+    );
+}
+
+.resume-main .info-box {
+    border-left: 3px solid var(--resume-line,#cbb9e6);
+    transition: transform .25s ease,box-shadow .25s ease;
+}
+
+.resume-main .info-box:hover {
+    transform: translateX(4px);
+    box-shadow: 0 5px 14px #806a9115;
+}
+
+.certificate {
+    transition: transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+
+.certificate:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px #806a9118;
+    border-color: #cbb9e6;
+}
+
+.certificate img {
+    transition: transform .3s ease;
+}
+
+.certificate:hover img {
+    transform: scale(1.025);
+}
+
+.resume-main .back,
+.close-profile {
+    transition: transform .25s ease,filter .25s ease;
+}
+
+.resume-main .back:hover,
+.close-profile:hover {
+    transform: translateY(-2px);
+    filter: brightness(.94);
+}
+
+@keyframes memberFloatIn {
+    from {
+        opacity: 0;
+        transform: translateY(22px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes softRise {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes resumeAppear {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(.985);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes floatFlower {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #f9dce9;
+    color: #81445f;
+    margin-top: 35px;
+}
+
+.note {
+    font-size: 13px;
+    color: #967282;
+    text-align: center;
+    margin-top: 22px;
+}
+
+@media(max-width:600px) {
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 7px;
+    }
+
+    .welcome-panel {
+        padding: 28px 16px;
+    }
+
+    .members-reveal summary {
+        font-size: 18px;
+        padding: 16px 12px;
+    }
+
+    .profile {
+        padding: 55px 10px 15px;
+    }
+
+    .resume-sheet {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .resume-sidebar {
+        padding: 22px;
+    }
+
+    .resume-sidebar .profile-photo {
+        width: 115px;
+        height: 115px;
+    }
+
+    .resume-main {
+        padding: 25px 22px;
+    }
+
+    .profile h2 {
+        font-size: 28px;
+    }
+
+    .close-profile {
+        top: 10px;
+        right: 10px;
+    }
+
+    .certificates {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Quadra Pink</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#members">Members</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Our Quadra Pink Portfolio</h1>
+    <p>Four members, four journeys, one beautiful collection of skills and achievements.</p>
+</section>
+
+<main>
+
+    <section class="welcome-panel">
+        <div class="welcome-flower">🌸</div>
+        <h2>Welcome to Our Website Portfolio</h2>
+        <p>A collection of our stories, skills, and achievements.</p>
+        <a class="btn explore-btn" href="#member-list">Explore Our Portfolio ↓</a>
+    </section>
+
+    <details class="members-reveal" id="members">
+
+        <summary id="member-list">
+            🌸 Meet Our Members 🌸
+            <span>Click to reveal</span>
+        </summary>
+
+        <div class="members">
+
+            <article class="member-card">
+                <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\48174fb7-d468-4bae-a9b6-73efb0692a2a.jpg" alt="Angel's profile picture">
+                <h3>Angel L. Arellano</h3>
+                <p>View my individual portfolio</p>
+                <a class="btn" href="#angel">View Portfolio</a>
+            </article>
+
+            <article class="member-card">
+                <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\quality_restoration_20261016082554582.jpg" alt="Alyssa's profile picture">
+                <h3>Alyssa Jean T. Galvez</h3>
+                <p>View my individual portfolio</p>
+                <a class="btn" href="#alyssa">View Portfolio</a>
+            </article>
+
+            <article class="member-card">
+                <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\847728920_2898311650543812_144855638456005647_n.jpg" alt="Dyanna's profile picture">
+                <h3>Dyanna Marie G. Balbuena</h3>
+                <p>View my individual portfolio</p>
+                <a class="btn" href="#dyanna">View Portfolio</a>
+            </article>
+
+            <article class="member-card">
+                <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\841410459_1500297432157470_4232173220291455147_n.jpg" alt="Janelle's profile picture">
+                <h3>Janelle D. Tabernero</h3>
+                <p>View my individual portfolio</p>
+                <a class="btn" href="#janelle">View Portfolio</a>
+            </article>
+
+        </div>
+
+        <p class="note">
+            Click “View Portfolio” under a member to see only that member’s information and certificates.
+        </p>
+
+    </details>
+
+    <!-- MEMBER 1: ANGEL -->
+
+    <section class="profile" id="angel">
+
+        <a class="close-profile" href="#members" aria-label="Close portfolio">×</a>
+
+        <div class="resume-sheet">
+
+            <aside class="resume-sidebar">
+
+                <img class="profile-photo" src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\48174fb7-d468-4bae-a9b6-73efb0692a2a.jpg" alt="Angel's profile picture">
+
+                <h3>Contact</h3>
+                <p>✉ arellanoangel812@gmail.com<br>
+                   ☎ 09362412314<br>
+                   ⌖ Rosario La, Union</p>
+
+                <h3>Personal Info</h3>
+                <p><strong>Full Name</strong><br>Angel L. Arellano</p>
+                <p><strong>Course</strong><br>BS Information Technology</p>
+                <p><strong>Status</strong><br>Student</p>
+
+                <h3>Skills</h3>
+                <p>Communication skills<br>Multitasking<br>Willingness to Learn<br>Hardwork</p>
+
+            </aside>
+
+            <div class="resume-main">
+
+                <span class="resume-tag">STUDENT</span>
+                <h2>Angel L. Arellano</h2>
+                <p class="subtitle">Information Technology Student</p>
+
+                <h3>About Me</h3>
+                <p>Hi! I am Angel L. Arellano. I am a BS Information technology student who enjoys learning about technology, computer systems, and web development. I am motivate to improve m skill and gain experience in the IT industry</p>
+
+                <h3>Education</h3>
+                <p><strong>Bachelor of Science in Information Technology</strong><br>
+                University of Eastern Pangasinan<br>
+                <span style="color:#777">Present</span></p>
+
+                <h3>Skills & Strengths</h3>
+                <ul>
+                    <li>Time Management and Organization</li>
+                    <li>Cooperation and Responsibility</li>
+                    <li>Customner Service and Interpersonal Skills</li>
+                </ul>
+
+                <h3>Certificates</h3>
+
+                <div class="certificates">
+                    <div class="certificate">
+                        <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\a3afd462-518a-4f88-b103-5d161f9c884a.jpg" alt="Angel certificate 1">
+                        <p>ACHIEVEMENT</p>
+                    </div>
+
+                    <div class="certificate">
+                        <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\1af3c85e-27d9-4aca-b0cc-62467d69c09c.jpg" alt="Angel certificate 2">
+                        <p>COMPLETION</p>
+                    </div>
+                </div>
+
+                <a class="back" href="#members">← Back to all members</a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="profile" id="alyssa">
+
+        <a class="close-profile" href="#members" aria-label="Close portfolio">×</a>
+
+        <div class="resume-sheet">
+
+            <aside class="resume-sidebar">
+
+                <img class="profile-photo" src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\quality_restoration_20261016082554582.jpg" alt="Alyssa's profile picture">
+
+                <h3>Contact</h3>
+                <p>✉ alyssajeangalvez@gmail.com<br>
+                   ☎ 09513229572<br>
+                   ⌖ Sapang, Manaoag, Pangasinan</p>
+
+                <h3>Personal Info</h3>
+                <p><strong>Full Name</strong><br>Alyssa Jean T. Galvez</p>
+                <p><strong>Course</strong><br>BS Information Technology</p>
+                <p><strong>Status</strong><br>Student</p>
+
+                <h3>Skills</h3>
+                <p>Communication<br>Teamwork<br>Creativity<br>Drawing and Sketching</p>
+
+            </aside>
+
+            <div class="resume-main">
+
+                <span class="resume-tag">STUDENT</span>
+                <h2>Alyssa Jean T. Galvez</h2>
+                <p class="subtitle">Information Technology Student</p>
+
+                <h3>About Me</h3>
+                <p>Hi! I am Alyssa Jean T. Galvez, an Information Technology student at the University of Eastern Pangasinan. I enjoy drawning and expressing my creativity through art. I am eager to learn new skills, gain knowledge, and improve myself to achieve my goals.</p>
+
+                <h3>Education</h3>
+                <p><strong>Bachelor of Science in Information Technology</strong><br>
+                University of Eastern Pangasinan<br>
+                <span style="color:#777">Present</span></p>
+
+                <h3>Skills & Strengths</h3>
+                <ul>
+                    <li>Drawing and Creative Design</li>
+                    <li>Basic Computer Skills</li>
+                    <li>PhotoEditing</li>
+                    <li>Respectful and Cooperative</li>
+                    <li>Creative and Imaginative</li>
+                    <li>Good Listener</li>
+                </ul>
+
+                <h3>Certificates</h3>
+
+                <div class="certificates">
+                    <div class="certificate">
+                        <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\quality_restoration_20261009222731705.jpg" alt="Alyssa certificate 1">
+                        <p>ACHIEVEMENT</p>
+                    </div>
+
+                    <div class="certificate">
+                        <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\quality_restoration_20261009222714274.jpg" alt="Alyssa certificate 2">
+                        <p>COMPLETION</p>
+                    </div>
+                </div>
+
+                <a class="back" href="#members">← Back to all members</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMBER 3: DYANNA - DARK BLUE RESUME -->
+
+    <section class="profile" id="dyanna">
+
+        <a class="close-profile" href="#members" aria-label="Close portfolio">×</a>
+
+        <div class="resume-sheet">
+
+            <aside class="resume-sidebar">
+
+                <img class="profile-photo" src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\847728920_2898311650543812_144855638456005647_n.jpg" alt="Dyanna's profile picture">
+
+                <h3>Contact</h3>
+                <p>✉ dyannamariegbalbuena@gmail.com<br>
+                   ☎  09053456133<br>
+                   ⌖ Inabaan Norte, Rosario, La Union</p>
+
+                <h3>Personal Info</h3>
+                <p><strong>Full Name</strong><br>Dyanna Marie G. Balbuena</p>
+                <p><strong>Course</strong><br>BS Information Technology</p>
+                <p><strong>Status</strong><br>Student</p>
+
+                <h3>Skills</h3>
+                <p>Communication<br>Teamwork<br>Creativity<br>Basic computer skills</p>
+
+            </aside>
+
+            <div class="resume-main">
+
+                <span class="resume-tag">STUDENT</span>
+                <h2>Dyanna Marie G. Balbuena</h2>
+                <p class="subtitle">Information Technology Student</p>
+
+                <h3>About Me</h3>
+                <p>Hi! I am Dyanna Marie G. Balbuena, a first-year Bachelor of Science in Information Technology student at the University of Eastern Pangasinan. I am a dedicated and hardworking student who is willing to learn and explore new things. I want to develop my knowledge, improve my computer skills, and gain new experiences that will help me grow personally and academically. I also enjoy cooking, listening to music, and reading during my free time.</p>
+
+                <h3>Education</h3>
+                <p><strong>Bachelor of Science in Information Technology</strong><br>
+                University of Eastern Pangasinan<br>
+                <span style="color:#777">Present</span></p>
+
+                <h3>Skills & Strengths</h3>
+                <ul>
+                    <li>basic networking </li>
+                    <li>basic computer skills </li>
+                    <li>problem solving </li>
+                    <li>microsoft word and powerpoint </li>
+                    <li>responsible in completing tasks </li>
+                    <li>eagerness to learn adaptability</li>
+                    <li>attention to detail </li>
+                    <li>persistence when facinf challenges</li>
+                </ul>
+
+                <h3>Certificates</h3>
+
+                <div class="certificates">
+                    <div class="certificate">
+                        <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\850031141_1123637956836388_8125751440281301907_n.jpg" alt="Dyanna certificate 1">
+                        <p>AWARD FOR RESEARCH</p>
+                    </div>
+
+                    <div class="certificate">
+                        <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\846391522_3617442165090082_292714208799046323_n.jpg" alt="Dyanna certificate 2">
+                        <p>COMPLETION</p>
+                    </div>
+                </div>
+
+                <a class="back" href="#members">← Back to all members</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMBER 4: JANELLE -->
+
+    <section class="profile" id="janelle">
+
+        <a class="close-profile" href="#members" aria-label="Close portfolio">×</a>
+
+        <div class="resume-sheet">
+
+            <aside class="resume-sidebar">
+
+                <img class="profile-photo" src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\841410459_1500297432157470_4232173220291455147_n.jpg" alt="Janelle's profile picture">
+
+                <h3>Contact</h3>
+                <p>✉ tabernerojanelle@gmail.com <br>
+                   ☎ 09197813633<br>
+                   ⌖ Tabtabungao, Rosario , La Union</p>
+
+                <h3>Personal Info</h3>
+                <p><strong>Full Name</strong><br>Janelle D. Tabernero</p>
+                <p><strong>Course</strong><br>BS Information Technology</p>
+                <p><strong>Status</strong><br>Student</p>
+
+                <h3>Skills</h3>
+                <p>Communication<br>Teamwork<br>Creativity<br>Basic computer skills</p>
+
+            </aside>
+
+            <div class="resume-main">
+
+                <span class="resume-tag">STUDENT</span>
+                <h2>Janelle D. Tabernero</h2>
+                <p class="subtitle">Information Technology Student</p>
+
+                <h3>About Me</h3>
+                <p>Hi! I am Janelle D. Tabernero a first year College BSIT student, and my goal is gain more knowledge and experience in the area of Information Technology.I want to learn more new things to improve my skills in programming and I will continue developing my skills for my future career in IT.</p>
+
+                <h3>Education</h3>
+                <p><strong>Bachelor of Science in Information Technology</strong><br>
+                University of Eastern Pangasinan<br>
+                <span style="color:#777">Present</span></p>
+
+                <h3>Skills & Strengths</h3>
+                <ul>
+                    <li>Photo editing </li>
+                    <li>Basic knowledge of hardware and softwares </li>
+                    <li>Determination to improve </li>
+                    <li>Basic computer skills</li>
+                    <li>Willingness to learn new things</li>
+                </ul>
+
+                <h3>Certificates</h3>
+
+                <div class="certificates">
+                    <div class="certificate">
+                        <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\838487251_1082054994647354_1929631138893707270_n.jpg" alt="Janelle certificate 1">
+                        <p>TESDA</p>
+                    </div>
+
+                    <div class="certificate">
+                        <img src="C:\Users\alyssajean\Documents\New folder (2)\WEBSITE PORTFOLIO\839157269_1891288385173086_605610179257356044_n.jpg" alt="Janelle certificate 2">
+                        <p>COMPLETION</p>
+                    </div>
+                </div>
+
+                <a class="back" href="#members">← Back to all members</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+
+    <section id="contact">
+
+        <h2 class="section-title">Contact</h2>
+
+        <div class="info-box" style="text-align:center">
+            <p>For questions or information about our group portfolio, contact our members.</p>
+            <p><strong>Email:</strong> jandy.alyangel@gmail.com</p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    🌸 Our Group Portfolio | Made with love and cherry blossoms 🌸
+</footer>
+
+</body>
+</html>
